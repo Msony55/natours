@@ -17,8 +17,6 @@ const replaceTemplate = require('./modules/replaceTemplate');
 // })
 // console.log('we read the file');
 
-
-// __dirName use 
 // SERVER
 
 const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`,'utf-8');
@@ -28,8 +26,20 @@ const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.htm
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`,'utf-8');
 const dataObj = JSON.parse(data);
 
-const slugs = dataObj.map(element => slugify( element.productName, {lower : true}))
-// console.log(slugs);
+const slugs = dataObj.map(element => slugify( element.productName))
+slg = {}
+let count = 0;
+slugs.forEach(element => {
+    slg[count] = element;
+    count = count + 1;
+});
+console.log(slg);
+
+aa = {
+    "nano" : "rito",
+    "kk" : "seema"
+}
+console.log(aa);
 
 const server = http.createServer((req,res) => {
     // console.log(req.url);// getting path url
@@ -41,14 +51,22 @@ const server = http.createServer((req,res) => {
     if(pathname === '/' || pathname === '/overview'){
         res.writeHead(200, {'Content-type':'text/html'});
         const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('');
-        const output = tempOverview.replace('{%PRODUCT_CARDS%}',cardsHtml)
+        const output = tempOverview.replace('{%PRODUCT_CARDS%}',cardsHtml);
         res.end(output);
 
     // Product Page
     }else if(pathname === '/product'){
         res.writeHead(200, {'Content-type':'text/html'});
-        const product = dataObj[query.id];
-        const output = replaceTemplate(tempProduct, product)
+        const product_id = dataObj[query.id];
+        // console.log(product_id.productName);
+        // console.log(slg[query.id]);
+        // console.log(slg);
+        // if(product_id.productName == slg[query.id]){
+        //     console.log(product_id );
+        // }else{
+        //     console.log("no");
+        // }
+        const output = replaceTemplate(tempProduct, product_id)
         res.end(output);
 
     // API
