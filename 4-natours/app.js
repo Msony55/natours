@@ -16,6 +16,7 @@ app.use(express.static(`${__dirname}/public`)); //static data like image, html,p
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toDateString();
+  // console.log(req.headers);
   next();
 });
 

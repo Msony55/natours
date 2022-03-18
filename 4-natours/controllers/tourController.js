@@ -28,14 +28,6 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
       tours,
     },
   });
-  // try {
-  // } catch (err) {
-  //   res.status(404).json({
-  //     status: 'fail',
-  //     message: `Database not found`,
-  //     error: err,
-  //   });
-  // }
 });
 
 exports.getTour = catchAsync(async (req, res, next) => {
@@ -51,14 +43,6 @@ exports.getTour = catchAsync(async (req, res, next) => {
       tour,
     },
   });
-  // try {
-  // } catch (err) {
-  //   res.status(404).json({
-  //     status: 'fail',
-  //     message: `Id not found`,
-  //     error: err,
-  //   });
-  // }
 });
 
 exports.createTour = catchAsync(async (req, res, next) => {
@@ -70,14 +54,6 @@ exports.createTour = catchAsync(async (req, res, next) => {
       tour: newTour,
     },
   });
-  // try {
-  // } catch (err) {
-  //   res.status(404).json({
-  //     status: 'fail',
-  //     message: 'Invalid data',
-  //     error: err,
-  //   });
-  // }
 });
 
 exports.deleteTour = catchAsync(async (req, res, next) => {
@@ -91,14 +67,6 @@ exports.deleteTour = catchAsync(async (req, res, next) => {
     status: 'success',
     data: null,
   });
-  // try {
-  // } catch (err) {
-  //   res.status(404).json({
-  //     status: 'fail',
-  //     message: 'Invalid Id',
-  //     error: err,
-  //   });
-  // }
 });
 
 exports.updateTour = catchAsync(async (req, res, next) => {
@@ -117,13 +85,6 @@ exports.updateTour = catchAsync(async (req, res, next) => {
       tour,
     },
   });
-  // try {
-  // } catch (err) {
-  //   res.status(404).json({
-  //     status: 'fail',
-  //     message: err,
-  //   });
-  // }
 });
 
 exports.getTourStats = catchAsync(async (req, res, next) => {
@@ -154,13 +115,6 @@ exports.getTourStats = catchAsync(async (req, res, next) => {
       stats,
     },
   });
-  // try {
-  // } catch (err) {
-  //   res.status(404).json({
-  //     status: 'fail',
-  //     message: err,
-  //   });
-  // }
 });
 
 exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
@@ -206,11 +160,4 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
       plan,
     },
   });
-  // try {
-  // } catch (err) {
-  //   res.status(404).json({
-  //     status: 'fail',
-  //     message: err,
-  //   });
-  // }
 });
