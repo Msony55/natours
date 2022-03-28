@@ -1,5 +1,6 @@
 const express = require('express');
-const { getTour } = require('../controllers/viewsController');
+const { isLoggedIn } = require('../controllers/authController');
+const { getTour, getLoginForm } = require('../controllers/viewsController');
 const { getOverview } = require('../controllers/viewsController');
 
 const viewrouter = express.Router();
@@ -10,8 +11,12 @@ const viewrouter = express.Router();
 //     user: 'Jonas',
 //   });
 // });
+viewrouter.route(isLoggedIn);
 
 viewrouter.get('/', getOverview);
 viewrouter.get('/tour/:slug', getTour);
+
+viewrouter.get('/login', getLoginForm);
+// viewrouter.get('/tour/:slug', getTour);
 
 module.exports = viewrouter;
