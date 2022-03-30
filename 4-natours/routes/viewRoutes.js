@@ -1,22 +1,18 @@
 const express = require('express');
-const { isLoggedIn } = require('../controllers/authController');
-const { getTour, getLoginForm } = require('../controllers/viewsController');
-const { getOverview } = require('../controllers/viewsController');
+const viewsController = require('../controllers/viewsController');
+const authController = require('../controllers/authController');
 
-const viewrouter = express.Router();
+const router = express.Router();
 
-// viewrouter.get('/', (req, res) => {
-//   res.status(200).render('base', {
-//     tour: 'The Forest Hiker',
-//     user: 'Jonas',
-//   });
-// });
-viewrouter.route(isLoggedIn);
+router.get('/', authController.isLoggedIn, viewsController.getOverview);
+router.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour);
+router.get('/login', authController.isLoggedIn, viewsController.getLoginForm);
+router.get('/me', authController.protect, viewsController.getAccount);
 
-viewrouter.get('/', getOverview);
-viewrouter.get('/tour/:slug', getTour);
+router.post(
+  '/submit-user-data',
+  authController.protect,
+  viewsController.updateUserData
+);
 
-viewrouter.get('/login', getLoginForm);
-// viewrouter.get('/tour/:slug', getTour);
-
-module.exports = viewrouter;
+module.exports = router;

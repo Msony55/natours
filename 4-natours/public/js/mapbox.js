@@ -1,10 +1,10 @@
 /* eslint-disable */
 export const displayMap = (locations) => {
   mapboxgl.accessToken =
-    'pk.eyJ1IjoieWlqYWoiLCJhIjoiY2wxYWZ5Y3E2MGppNjNvdGIyaDV2NzUzbiJ9.APEvOR3unh_zmEBDVpq5vw';
+    'pk.eyJ1IjoieWlqYWoiLCJhIjoiY2wxYndwcHZiMDF6dTNpbzI1em1wbWk3YiJ9.DfIWpxmw0WdqoVTr6t4Mrg';
   const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/yijaj/cl1bwkkwm00a914o3w6ycdy60',
     scrollZoom: false,
     // center: [-118.113491, 34.111745],
     // zoom: 10,

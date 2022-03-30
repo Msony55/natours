@@ -17,12 +17,14 @@ const {
   protect,
   restrictTo,
   updatePassword,
+  logout,
 } = require('../controllers/authController');
 
 const userRouter = express.Router();
 
 userRouter.post('/signup', signup);
 userRouter.post('/login', login);
+userRouter.get('/logout', logout);
 userRouter.post('/forgotPassword', forgotPassword);
 userRouter.patch('/resetPassword/:token', resetPassword);
 

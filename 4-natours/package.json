@@ -25,6 +25,7 @@
     "helmet": "^5.0.2",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
+    "mapbox-gl": "^2.7.1",
     "mongoose": "^6.2.4",
     "morgan": "^1.10.0",
     "nodemailer": "^6.7.2",
