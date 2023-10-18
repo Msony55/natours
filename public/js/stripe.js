@@ -1,8 +1,8 @@
 /* eslint-disable */
-import axios from 'axios';
-import { showAlert } from './alerts';
+import axios from "axios";
+import { showAlert } from "./alerts";
 const stripe = Stripe(
-  'pk_test_51Kj520SBCNTqz6uPAC53n0uM4iR8ujB7B5ABIkaRTjEADZ4v6hy7QpOB6t9fyM6zVGSdRcT2cHjLri5ujIC59gVh00lWCsoMbY'
+  "pk_test_51Kj520SBCNTqz6uPAC53n0uM4iR8ujB7B5ABIkaRTjEADZ4v6hy7QpOB6t9fyM6zVGSdRcT2cHjLri5ujIC59gVh00lWCsoMbY"
 );
 
 export const bookTour = async (tourId) => {
@@ -17,6 +17,6 @@ export const bookTour = async (tourId) => {
     });
   } catch (err) {
     console.log(err);
-    showAlert('error', err);
+    showAlert("error", err);
   }
 };

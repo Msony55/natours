@@ -1,17 +1,17 @@
-const mongoose = require('mongoose');
-const Tour = require('./tourModel');
+const mongoose = require("mongoose");
+const Tour = require("./tourModel");
 
 const reviewSchema = new mongoose.Schema(
   {
     review: {
       type: String,
-      maxlength: [500, 'maximum limit is 100 words'],
-      minlength: [10, 'minimum limit is 10 words'],
-      required: [true, 'Review cannot be empty'],
+      maxlength: [500, "maximum limit is 100 words"],
+      minlength: [10, "minimum limit is 10 words"],
+      required: [true, "Review cannot be empty"],
     },
     rating: {
       type: Number,
-      required: [true, 'rating is required'],
+      required: [true, "rating is required"],
       max: 5,
       min: 0,
     },
@@ -21,14 +21,14 @@ const reviewSchema = new mongoose.Schema(
     },
     tour: {
       type: mongoose.Schema.ObjectId,
-      ref: 'Tour',
-      require: [true, 'Review must belog to a tour'],
+      ref: "Tour",
+      require: [true, "Review must belog to a tour"],
     },
 
     user: {
       type: mongoose.Schema.ObjectId,
-      ref: 'User',
-      required: [true, 'review must belong to a user'],
+      ref: "User",
+      required: [true, "review must belong to a user"],
     },
   },
   {
@@ -45,8 +45,8 @@ reviewSchema.pre(/^find/, function (next) {
   //   select: 'name',
   // });
   this.populate({
-    path: 'user',
-    select: 'name photo',
+    path: "user",
+    select: "name photo",
   });
   next();
 });
@@ -58,9 +58,9 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
     },
     {
       $group: {
-        _id: '$tour',
+        _id: "$tour",
         nRating: { $sum: 1 },
-        avgRating: { $avg: '$rating' },
+        avgRating: { $avg: "$rating" },
       },
     },
   ]);
@@ -79,7 +79,7 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
   }
 };
 
-reviewSchema.pre('save', (next) => {
+reviewSchema.pre("save", (next) => {
   // this points to current review
   this.constructor.calcAverageRatings(this.tour); //???
   next();
@@ -87,17 +87,17 @@ reviewSchema.pre('save', (next) => {
 
 // findByIdAndUpdate
 // findByIdAndDelete
-reviewSchema.pre(/^findOneAnd/, async function (next) {
-  this.r = await this.findOne();
-  console.log(this.r);
-  next();
-});
+// reviewSchema.pre(/^findOneAnd/, async function (next) {
+//   this.r = await this.findOne();
+//   console.log(this.r);
+//   next();
+// });
 
-reviewSchema.post(/^findOneAnd/, async function (next) {
+reviewSchema.post(/^findOneAnd/, async function (doc, next) {
   // await this.findOne(); does not work here, query has already executed
-  await this.r.constructor.calcAverageRatings(this.r.tour);
+  await doc.constructor.calcAverageRatings(doc.tour);
   next();
 });
 
-const Reviews = mongoose.model('Reviews', reviewSchema);
+const Reviews = mongoose.model("Reviews", reviewSchema);
 module.exports = Reviews;

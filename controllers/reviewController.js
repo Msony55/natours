@@ -1,5 +1,6 @@
-const Review = require('../models/reviewModel');
-const factory = require('./handlerFactory');
+const Review = require("./../models/reviewModel");
+const factory = require("./handlerFactory");
+// const catchAsync = require('./../utils/catchAsync');
 
 exports.setTourUserIds = (req, res, next) => {
   // Allow nested routes
@@ -8,7 +9,7 @@ exports.setTourUserIds = (req, res, next) => {
   next();
 };
 
-exports.getAllReview = factory.getAll(Review);
+exports.getAllReviews = factory.getAll(Review);
 exports.getReview = factory.getOne(Review);
 exports.createReview = factory.createOne(Review);
 exports.updateReview = factory.updateOne(Review);

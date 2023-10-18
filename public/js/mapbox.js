@@ -1,10 +1,10 @@
 /* eslint-disable */
 export const displayMap = (locations) => {
   mapboxgl.accessToken =
-    'pk.eyJ1IjoieWlqYWoiLCJhIjoiY2wxYndwcHZiMDF6dTNpbzI1em1wbWk3YiJ9.DfIWpxmw0WdqoVTr6t4Mrg';
+    "pk.eyJ1IjoieWlqYWoiLCJhIjoiY2wxYndwcHZiMDF6dTNpbzI1em1wbWk3YiJ9.DfIWpxmw0WdqoVTr6t4Mrg";
   const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/yijaj/cl1bwkkwm00a914o3w6ycdy60',
+    container: "map",
+    style: "mapbox://styles/yijaj/cl1bwkkwm00a914o3w6ycdy60",
     scrollZoom: false,
     // center: [-118.113491, 34.111745],
     // zoom: 10,
@@ -15,13 +15,13 @@ export const displayMap = (locations) => {
 
   locations.forEach((loc) => {
     // Create marker
-    const el = document.createElement('div');
-    el.className = 'marker';
+    const el = document.createElement("div");
+    el.className = "marker";
 
     // Add marker
     new mapboxgl.Marker({
       element: el,
-      anchor: 'bottom',
+      anchor: "bottom",
     })
       .setLngLat(loc.coordinates)
       .addTo(map);
